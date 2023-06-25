@@ -6,10 +6,16 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
     
     try {
         const payload = (req.query.payload || (req.body && req.body.payload));
+
+        //const PayloadType = ["payloadA", "payloadB"];
         
         if(!payload) throw new Error("No payload found");
+        if(!payload.type) throw new Error("No typeof payload found");
 
-        context.bindings.outoutSbMsg = {
+        if(payload.type !== "payloadA" && payload.type !== "payloadB")
+        throw new Error("Invalid PayloadType");
+        
+        context.bindings.outputSbQueue = {
             body: JSON.stringify(payload)
         }
 

@@ -11,9 +11,11 @@
       ]
     },
     {
-      "type": "http",
+      "type": "serviceBus",
       "direction": "out",
-      "name": "res"
+      "connection": "AksServiceBus_SERVICEBUS",
+      "name": "outputSbQueue",
+      "queueName": "myinputqueue"
     }
   ],
   "scriptFile": "../dist/HttpTrigger1/index.js"
